@@ -16,4 +16,10 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="localhost" id="558066bd-8d56-4c18-a1ef-b73b69aa7ec0" name="Xdebug" />
+    </servers>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
 </project>

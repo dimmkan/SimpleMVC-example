@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e802e632-00dd-4ab3-a9ce-d9a489b5d0d6" name="localhost" url="http://simplemvc.loc">
+        <fileTransfer port="0" mountedRoot="$PROJECT_DIR$" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
