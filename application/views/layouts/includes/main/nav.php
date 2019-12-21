@@ -18,7 +18,7 @@ $User = Config::getObject('core.user.class');
  <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
         <li class="nav-item ">
-            <a class="nav-link" href="/">Главная</a>
+            <a class="nav-link" href="/">Список статей</a>
         </li>
         <?php  if ($User->isAllowed("login/login")): ?>
         <li class="nav-item ">
@@ -26,9 +26,12 @@ $User = Config::getObject('core.user.class');
         </li>
         <?php endif; ?>
         <?php  if ($User->isAllowed("admin/adminusers/index")): ?>
-        <li class="nav-item ">
-            <a class="nav-link" href="<?= Url::link("admin/adminusers/index") ?>"> Пользователи </a>
-        </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/category">Категории</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="<?= Url::link("admin/adminusers/index") ?>"> Пользователи </a>
+            </li>
         <?php endif; ?>
         
         <?php  if ($User->isAllowed("login/logout")): ?>
