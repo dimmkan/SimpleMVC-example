@@ -1,53 +1,69 @@
-<div class="row">
-    <div class="col "><h1><?php echo $homepageTitle ?></h1>
-        </div>
-</div>
-<div class="row">
-    <div class="col ">
-      <p class="lead"> Добро пожаловать в SimpleMVC! </p>
-    </div>
-</div>
-<div class="row">
+<div id="container">
+    <a href="/"><img id="logo" src="/images/logo.jpg" alt="Widget News" /></a>
+<ul id="headlines">
     <?php foreach ($results['results'] as $article) { ?>
-    <li class='<?php echo $article->id?>'>
-        <h2>
+        <li class='<?php echo $article->id?>'>
+            <h2>
                 <span class="pubDate">
                     <?php echo date('j F', strtotime($article->publicationDate))?>
                 </span>
 
-            <a href="/viewArticle?articleId=<?php echo $article->id?>">
-                <?php echo htmlspecialchars($article->title)?>
-            </a>
+                <a href=".?action=viewArticle&amp;articleId=<?php echo $article->id?>">
+                    <?php echo htmlspecialchars( $article->title )?>
+                </a>
 
-            <?php if (isset($article->categoryId)) { ?>
-                <span class="category">
+                <?php if (isset($article->categoryId)) { ?>
+                    <span class="category">
                         in
-                        <a href="/archive?categoryId=<?php echo $article->categoryId?>">
-                            <?php echo htmlspecialchars($results['categories'][$article->categoryId]->name)?>
+                        <a href=".?action=archive&amp;categoryId=<?php echo $article->categoryId?>">
+                            <?php echo htmlspecialchars($results['categories'][$article->categoryId]->name )?>
                         </a>
                     </span>
-            <?php }
-            else { ?>
-                <span class="category">
+                <?php }
+                else { ?>
+                    <span class="category">
                         <?php echo "Без категории"?>
                     </span>
-            <?php } ?>
+                <?php } ?>
 
-            <?php if (isset($article->subcategoryId)) { ?>
-                <span class="category">
+                <?php if (isset($article->subcategoryId)) { ?>
+                    <span class="category">
                         in
                         <a href=".?action=archive&amp;subcategoryId=<?php echo $article->subcategoryId?>">
                             <?php echo htmlspecialchars($results['subcategories'][$article->subcategoryId]->description)?>
                         </a>
                     </span>
-            <?php }
-            else { ?>
-                <span class="category">
+                <?php }
+                else { ?>
+                    <span class="category">
                         <?php echo "Без подкатегории"?>
                     </span>
+                <?php } ?>
+            </h2>
+            <p class="summary<?php echo $article->id?>"><?php echo htmlspecialchars($article->shortContent)?></p>
+
+            <ul class="ajax-load">
+                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="ajaxArticleBodyByPost" data-contentId="<?php echo $article->id?>">Показать продолжение (POST)</a></li>
+                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="ajaxArticleBodyByGet" data-contentId="<?php echo $article->id?>">Показать продолжение (GET)</a></li>
+                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="newAjaxPost" data-contentId="<?php echo $article->id?>">(POST) -- NEW</a></li>
+                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="newAjaxGet" data-contentId="<?php echo $article->id?>" >(GET)  -- NEW</a></li>
+            </ul>
+            <a href=".?action=viewArticle&amp;articleId=<?php echo $article->id?>" class="showContent" data-contentId="<?php echo $article->id?>">Показать полностью</a>
+            <?php if(isset($results['authors'])) { ?>
+            <span class="category">
+                    <?php
+                    $res = "";
+                    foreach ($results['authors'] as $author) {
+                        if (in_array($author->id, $article->authors)) {
+                            ?>
+                            <a href="/viewArticleByAuthor?authorId=<?php echo (in_array($author->id, $article->authors)) ? $author->id : "0"; ?>"><?php echo(in_array($author->id, $article->authors)) ? htmlspecialchars($author->login) : ""; ?></a>
+                        <?php }
+                    }
+                    ?>
+                </span>
             <?php } ?>
-        </h2>
-        <p class="summary<?php echo $article->id?>"><?php echo htmlspecialchars($article->shortContent)?></p>
-    </li>
+        </li>
     <?php } ?>
+</ul>
+<p><a href="./archive">Article Archive</a></p>
 </div>
