@@ -1,3 +1,8 @@
+<?php
+use ItForFree\SimpleMVC\Config;
+
+$Url = Config::getObject('core.url.class');
+?>
 <div id="container">
     <a href="/"><img id="logo" src="/images/logo.jpg" alt="Widget News" /></a>
 <ul id="headlines">
@@ -8,7 +13,7 @@
                     <?php echo date('j F', strtotime($article->publicationDate))?>
                 </span>
 
-                <a href=".?action=viewArticle&amp;articleId=<?php echo $article->id?>">
+                <a href="<?= $Url::link("viewArticle/&id=".$article->id)?>">
                     <?php echo htmlspecialchars( $article->title )?>
                 </a>
 
@@ -66,4 +71,7 @@
     <?php } ?>
 </ul>
 <p><a href="./archive">Article Archive</a></p>
+    <div id="footer">
+        <a href="admin.php">Site Admin</a>
+    </div>
 </div>

@@ -1,3 +1,14 @@
+<?php
+use ItForFree\SimpleMVC\Config;
+use ItForFree\SimpleMVC\Url;
+
+$User = Config::getObject('core.user.class');
+
+
+//ppre($User->explainAccess("admin/adminusers/index"));
+
+?>
+
 <div class="footer">
     <div class="container">
        <span title="orioginal text:  2017. All rights reserved. I will find you." style="color: #cbc4c4"> 
