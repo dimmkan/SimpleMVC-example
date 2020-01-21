@@ -21,7 +21,7 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
         $Articles = new Articles();
         $Articles->tableName = 'articles';
         $Articles->orderBy = 'publicationDate DESC';
-        $results = $Articles->getList();
+        $results = $Articles->getList(5);
         foreach ($results['results'] as $article){
             $article->getShortContent();
         }

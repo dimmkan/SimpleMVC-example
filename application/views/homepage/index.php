@@ -20,7 +20,7 @@ $Url = Config::getObject('core.url.class');
                 <?php if (isset($article->categoryId)) { ?>
                     <span class="category">
                         in
-                        <a href=".?action=archive&amp;categoryId=<?php echo $article->categoryId?>">
+                        <a href="<?= $Url::link("archive/byCategory&categoryId=".$article->categoryId)?>">
                             <?php echo htmlspecialchars($results['categories'][$article->categoryId]->name )?>
                         </a>
                     </span>
@@ -34,7 +34,7 @@ $Url = Config::getObject('core.url.class');
                 <?php if (isset($article->subcategoryId)) { ?>
                     <span class="category">
                         in
-                        <a href=".?action=archive&amp;subcategoryId=<?php echo $article->subcategoryId?>">
+                        <a href="<?= $Url::link("archive/bySubcategory&subcategoryId=".$article->subcategoryId)?>">
                             <?php echo htmlspecialchars($results['subcategories'][$article->subcategoryId]->description)?>
                         </a>
                     </span>

@@ -1,18 +1,24 @@
+<?php
+use ItForFree\SimpleMVC\Config;
+
+$Url = Config::getObject('core.url.class');
+?>
+<div id="container">
 <h1 style="width: 75%;"><?php echo htmlspecialchars( $results['article']->title )?></h1>
 <div style="width: 75%; font-style: italic;"><?php echo htmlspecialchars( $results['article']->summary )?></div>
 <div style="width: 75%;"><?php echo $results['article']->content?></div>
-<p class="pubDate">Published on <?php  echo date('j F Y', $results['article']->publicationDate)?>
+<p class="pubDate">Published on <?php  echo date('j F Y', strtotime($results['article']->publicationDate))?>
 
     <?php if ( $results['category'] ) { ?>
         in
-        <a href="./?action=archive&amp;categoryId=<?php echo $results['category']->id?>">
+        <a href="<?= $Url::link("archive/byCategory&categoryId=".$results['category']->id)?>">
             <?php echo htmlspecialchars($results['category']->name) ?>
         </a>
     <?php } ?>
 
 </p>
 <span class="category">
-        <?php
+        <?php /*
         $res = "";
         foreach ($results['authors'] as $author) {
             if (in_array($author->id, $results['article']->authors)) {
@@ -21,6 +27,7 @@
                 <?php
             }
         }
-        ?>
+        */?>
     </span>
 <p><a href="./">Вернуться на главную страницу</a></p>
+</div>
