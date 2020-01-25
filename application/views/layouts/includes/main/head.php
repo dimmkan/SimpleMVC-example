@@ -8,4 +8,5 @@
     <script src="/JS/jquery-3.2.1.js"></script>
     <script src="/JS/popper.js"></script>
     <script src="/JS/bootstrap.js"></script>
+    <script src="/JS/ajax/oldAjax.js"></script>
 </head>

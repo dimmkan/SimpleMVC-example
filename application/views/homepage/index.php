@@ -48,12 +48,12 @@ $Url = Config::getObject('core.url.class');
             <p class="summary<?php echo $article->id?>"><?php echo htmlspecialchars($article->shortContent)?></p>
 
             <ul class="ajax-load">
-                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="ajaxArticleBodyByPost" data-contentId="<?php echo $article->id?>">Показать продолжение (POST)</a></li>
-                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="ajaxArticleBodyByGet" data-contentId="<?php echo $article->id?>">Показать продолжение (GET)</a></li>
-                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="newAjaxPost" data-contentId="<?php echo $article->id?>">(POST) -- NEW</a></li>
-                <li><a href="/action=viewArticle?articleId=<?php echo $article->id?>" class="newAjaxGet" data-contentId="<?php echo $article->id?>" >(GET)  -- NEW</a></li>
+                <li><a href="<?= $Url::link("viewArticle/&id=".$article->id)?>" class="ajaxArticleBodyByPost" data-contentId="<?php echo $article->id?>">Показать продолжение (POST)</a></li>
+                <li><a href="<?= $Url::link("viewArticle/&id=".$article->id)?>" class="ajaxArticleBodyByGet" data-contentId="<?php echo $article->id?>">Показать продолжение (GET)</a></li>
+                <li><a href="<?= $Url::link("viewArticle/&id=".$article->id)?>" class="newAjaxPost" data-contentId="<?php echo $article->id?>">(POST) -- NEW</a></li>
+                <li><a href="<?= $Url::link("viewArticle/&id=".$article->id)?>" class="newAjaxGet" data-contentId="<?php echo $article->id?>" >(GET)  -- NEW</a></li>
             </ul>
-            <a href=".?action=viewArticle&amp;articleId=<?php echo $article->id?>" class="showContent" data-contentId="<?php echo $article->id?>">Показать полностью</a>
+            <a href="<?= $Url::link("viewArticle/&id=".$article->id)?>" class="showContent" data-contentId="<?php echo $article->id?>">Показать полностью</a>
             <?php if(isset($results['authors'])) { ?>
             <span class="category">
                     <?php
