@@ -18,26 +18,38 @@ class AjaxController extends \ItForFree\SimpleMVC\mvc\Controller
 
     public function postAction()
     {
-
+        if(isset($_POST['id'])){
+            $article = new Articles();
+            $res = $article->getById($_POST['id']);
+            echo json_encode($res->content);
+        }
     }
 
     public function getAction()
     {
         if (isset($_GET['id'])) {
             $article = new Articles();
-            $article->getById($_GET['id']);
-            echo json_encode($article->content);
+            $res = $article->getById($_GET['id']);
+            echo json_encode($res->content);
         }
     }
 
     public function newPostAction()
     {
-
+        if(isset($_POST['id'])){
+            $article = new Articles();
+            $res = $article->getById($_POST['id']);
+            echo json_encode($res->content);
+        }
     }
 
     public function newGetAction()
     {
-
+        if (isset($_GET['id'])) {
+            $article = new Articles();
+            $res = $article->getById($_GET['id']);
+            echo json_encode($res->content);
+        }
     }
 }
 

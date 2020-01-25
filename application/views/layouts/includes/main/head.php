@@ -9,4 +9,5 @@
     <script src="/JS/popper.js"></script>
     <script src="/JS/bootstrap.js"></script>
     <script src="/JS/ajax/oldAjax.js"></script>
+    <script src="/JS/ajax/newAjax.js"></script>
 </head>
