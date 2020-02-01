@@ -72,6 +72,6 @@ $Url = Config::getObject('core.url.class');
 </ul>
 <p><a href="./archive">Article Archive</a></p>
     <div id="footer">
-        <a href="admin.php">Site Admin</a>
+        <a href="<?= $Url::link("admin/login/")?>">Site Admin</a>
     </div>
 </div>
