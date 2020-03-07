@@ -39,6 +39,8 @@ class Articles extends Model
      */
     public $shortContent = null;
 
+    public $subcategoryId = null;
+
     /** @var string  */
     public $orderBy = 'publicationDate DESC';
 
@@ -64,6 +66,50 @@ class Articles extends Model
 
         $st = $this->pdo->prepare($sql);
         $st->bindValue( ":categoryId", $categoryId, \PDO::PARAM_INT );
+        $st->execute();
+        $list = array();
+
+        while ($row = $st->fetch()) {
+            $example = new $modelClassName($row);
+            $list[] = $example;
+        }
+
+        $sql = "SELECT FOUND_ROWS() AS totalRows"; //  получаем число выбранных строк
+        $totalRows = $this->pdo->query($sql)->fetch();
+        return (array ("results" => $list, "totalRows" => $totalRows[0]));
+    }
+
+    public function getList($numRows = 100000)
+    {
+        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM $this->tableName WHERE actions = 1
+                ORDER BY  $this->orderBy LIMIT :numRows";
+
+        $modelClassName = static::class;
+
+        $st = $this->pdo->prepare($sql);
+        $st->bindValue( ":numRows", $numRows, \PDO::PARAM_INT );
+        $st->execute();
+        $list = array();
+
+        while ($row = $st->fetch()) {
+            $example = new $modelClassName($row);
+            $list[] = $example;
+        }
+
+        $sql = "SELECT FOUND_ROWS() AS totalRows"; //  получаем число выбранных строк
+        $totalRows = $this->pdo->query($sql)->fetch();
+        return (array ("results" => $list, "totalRows" => $totalRows[0]));
+    }
+
+    public function getListBySubategoryId($catId)
+    {
+        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM $this->tableName WHERE subcategoryId = :subcategoryId
+                ORDER BY  $this->orderBy ";
+
+        $modelClassName = static::class;
+
+        $st = $this->pdo->prepare($sql);
+        $st->bindValue( ":subcategoryId", $catId, \PDO::PARAM_INT );
         $st->execute();
         $list = array();
 

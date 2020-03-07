@@ -3,6 +3,7 @@ namespace application\controllers;
 
 use application\models\Articles;
 use application\models\Categories;
+use application\models\Subcategories;
 
 class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
 {
@@ -28,6 +29,10 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
         $Categories = new Categories();
         foreach($Categories->getList()['results'] as $category){
             $results['categories'][$category->id] = $category;
+        }
+        $Subcategories = new Subcategories();
+        foreach($Subcategories->getList()['results'] as $subcategory){
+            $results['subcategories'][$subcategory->id] = $subcategory;
         }
         $this->view->addVar('results', $results);
         $this->view->addVar('homepageTitle', $this->homepageTitle); // передаём переменную по view

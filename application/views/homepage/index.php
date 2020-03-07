@@ -70,7 +70,7 @@ $Url = Config::getObject('core.url.class');
         </li>
     <?php } ?>
 </ul>
-<p><a href="./archive">Article Archive</a></p>
+<p><a href="<?=$Url::link("archive/")?>">Article Archive</a></p>
     <div id="footer">
         <a href="<?= $Url::link("admin/login/")?>">Site Admin</a>
     </div>
