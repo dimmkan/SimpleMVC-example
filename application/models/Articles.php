@@ -39,6 +39,8 @@ class Articles extends Model
      */
     public $shortContent = null;
 
+    public $actions = null;
+
     public $subcategoryId = null;
 
     /** @var string  */
